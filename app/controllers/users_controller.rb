@@ -27,5 +27,5 @@ class UsersController < ApplicationController
         format.js { render partial: 'users/friend_result' }
       end
     end
-  end  
+  end    
 end

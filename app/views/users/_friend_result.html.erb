@@ -1,7 +1,6 @@
 <div class="results-block">
   <%= render 'layouts/messages' %>
 </div>
-
 <% if @friends %>
   <div class="card card-header results-block">
     <table class="col-md-12">
@@ -12,8 +11,14 @@
             <td><strong>Email: </strong> <%= friend.email %></td>
             <td><strong>Actions: </strong> <%= link_to "View Profile", '#',
                                       class:"btn btn-sm btn-info"  %>
-                <%= link_to 'Follow friend?', '#',
+                <% if current_user.not_friends_with(friend.id) %>                        
+                  <%= link_to 'Follow friend?', friendships_path(friend: friend),
                                       class: "btn btn-sm btn-success", method: :post %></td>
+                <% else %>
+                  <span class="badge badge-secodary">
+                    You are already friends
+                  </span>
+                <% end %>                          
           </tr>                            
         <% end %>
       </tbody>
